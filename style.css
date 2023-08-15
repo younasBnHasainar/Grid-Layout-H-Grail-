@@ -29,13 +29,54 @@ footer {
   justify-content: center;
 } */
 
+/* 
+==================
+SHARED STYLES
+================== 
+*/
+
 * {
   margin: 0;
   box-sizing: border-box;
 }
 html {
   font-family: "Dosis", sans-serif;
+  font-size: 16px;
+  color: #1e4040;
 }
+a {
+  color: #71d99e;
+}
+a:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+header,
+footer {
+  background-color: #1e4040;
+  color: #71d99e;
+}
+
+h1,
+h2,
+h3 {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+p {
+  margin-bottom: 15px;
+}
+
+main,
+aside {
+  padding: 30px 5%;
+}
+/* 
+==================
+INDIVIDUAL STYLES
+================== 
+*/
 
 .outer-grid {
   display: grid;
@@ -53,20 +94,62 @@ html {
 }
 
 .outer-grid header {
-  background-color: rgba(0, 31, 255, 0.5);
   grid-area: alias-header;
+  /* flex container  */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
 }
+header .left-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.left-header .fa-bars:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+header .right-header {
+  display: flex;
+  gap: 10px;
+}
+.right-header .header-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.header-link i {
+  font-size: 0.8rem;
+}
+
 .outer-grid nav {
-  background-color: rgba(0, 31, 255, 0.8);
+  padding-top: 20px;
+  background-color: white;
   grid-area: alias-nav;
 }
 .outer-grid .hide-nav {
   display: none;
 }
+nav .nav-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15px;
+}
+.nav-link:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+.nav-link,
+.nav-link a {
+  color: #1e4040;
+  text-decoration: none;
+}
 
 .outer-grid .inner-grid {
   overflow-y: scroll;
-  background-color: rgba(0, 31, 255, 0.2);
+
   grid-area: alias-inner-grid;
   /*  grid container*/
   display: grid;
@@ -79,17 +162,15 @@ html {
 }
 
 .inner-grid main {
-  background-color: rgba(255, 122, 0);
   grid-area: alias-main;
-  height: 2000px;
 }
+
 .inner-grid aside {
   background-color: rgba(255, 122, 0, 0.4);
   grid-area: alias-aside;
   /* height: 100px; */
 }
 .inner-grid footer {
-  background-color: rgba(255, 122, 0, 0.7);
   grid-area: alias-footer;
 }
 
@@ -116,5 +197,34 @@ html {
       "alias-footer alias-footer";
   }
 }
-@media (min-width: 1440px) {
+@media (min-width: 1140px) {
+  .outer-grid {
+    grid-template-columns: 1fr 650px 1fr;
+    grid-template-areas:
+      "alias-header alias-header alias-header"
+      "alias-nav alias-inner-grid alias-inner-grid";
+  }
+  .outer-grid header {
+    display: grid;
+    grid-template-columns: 1fr 650px 1fr;
+    grid-template-areas: "alias-lh . alias-rh";
+  }
+  header .left-header {
+    grid-area: alias-lh;
+    justify-self: end;
+  }
+  header .right-header {
+    grid-area: alias-rh;
+    justify-self: start;
+  }
+
+  .outer-grid nav {
+    display: flex !important;
+    flex-direction: column;
+    align-items: end;
+    padding-right: 15px;
+  }
+  /* .outer-grid .nav-link {
+    margin-right: 10px;
+  } */
 }
